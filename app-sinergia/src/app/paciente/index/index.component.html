@@ -1,0 +1,37 @@
+<section>
+
+    <div class="d-flex justify-content-between">
+      <h4>Lista de pacientes</h4>
+      <a routerLink="/paciente/create" class="btn btn-success">Crear un nuevo paciente</a>
+    </div>
+
+    <br>
+    
+    <table class="table ">
+      <tr>
+        <th>ID</th>
+        <th>Tipo de documento</th>
+        <th>Numero de documento</th>
+        <th>Nombres</th>
+        <th>Apellidos</th>
+        <th>Genero</th>
+        <th>Departamento</th>
+        <th>Municipio</th>
+        <th width="220px">Action</th>
+      </tr>
+      <tr *ngFor="let paciente of pacientes">
+        <td>{{ paciente.id }}</td>
+        <td>{{ paciente.tipo_documento.nombre_documento }}</td>
+        <td>{{ paciente.numero_documento }}</td>
+        <td>{{ paciente.nombre1 + " " + paciente.nombre2 }}</td>
+        <td>{{ paciente.apellido1 + " " + paciente.apellido2 }}</td>
+        <td>{{ paciente.genero.descripcion }}</td>
+        <td>{{ paciente.departament.nombre }}</td>
+        <td>{{ paciente.municipio.nombre }}</td>
+        <td>
+          <a href="#" [routerLink]="['/paciente/', 'edit', paciente.id  ]" class="btn btn-primary" style="margin: 10px">Editar</a>
+          <button type="button" (click)="deletePaciente(paciente.id)" class="btn btn-danger">Eliminar</button>
+        </td>
+      </tr>
+    </table>
+ </section>

@@ -1,0 +1,145 @@
+<div class="container">
+  
+    <div class="d-flex justify-content-between">
+      <h4>Editar paciente</h4>
+      <a href="#" routerLink="/paciente/index" class="btn btn-primary">Atras</a>
+    </div>
+
+    <hr>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+                <label for="tipo_documento_id">Tipo de documento:</label>
+                <select id="tipo_documento_id" name="tipo_documento_id" formControlName="tipo_documento_id" class="form-control" [(ngModel)]="paciente.tipo_documento_id">
+                    <option *ngFor="let document of listDocument" [value]="document.value" >
+                        {{ document.description }}
+                    </option>
+                </select>
+                <div *ngIf="f.tipo_documento_id.touched && f.tipo_documento_id.invalid" class="alert alert-danger">
+                    <div *ngIf="f.tipo_documento_id.errors.required">*El tipo de documento es requerido.</div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+
+                <label for="numero_documento">Número de documento:</label>
+                <input
+                    formControlName="numero_documento"
+                    [(ngModel)]="paciente.numero_documento"
+                    id="numero_documento"
+                    type="text"
+                    class="form-control">
+                <div *ngIf="f.numero_documento.touched && f.numero_documento.invalid" class="alert alert-danger">
+                    <div *ngIf="f.numero_documento.errors.required">*El número de documento es requerido.</div>
+                    <div *ngIf="f.numero_documento.errors.pattern">*El número de documento solo debe contener números.</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+                <label for="nombre1">Primer nombre:</label>
+                <input
+                    formControlName="nombre1"
+                    [(ngModel)]="paciente.nombre1"
+                    id="nombre1"
+                    type="text"
+                    class="form-control">
+                <div *ngIf="f.nombre1.touched && f.nombre1.invalid" class="alert alert-danger">
+                    <div *ngIf="f.nombre1.errors.required">*El primer nombre es requerido.</div>
+                    <div *ngIf="f.nombre1.errors.pattern">*El primer nombre solo debe contener letras.</div>
+                </div>
+            </div>
+
+            <div class="col-md-6 ">
+                <label for="nombre2">Segundo nombre:</label>
+                <input
+                    formControlName="nombre2"
+                    [(ngModel)]="paciente.nombre2"
+                    id="nombre2"
+                    type="text"
+                    class="form-control">
+                <div *ngIf="f.nombre2.touched && f.nombre2.invalid" class="alert alert-danger">
+                    <div *ngIf="f.nombre2.errors.required">*El segundo nombre es requerido.</div>
+                    <div *ngIf="f.nombre2.errors.pattern">*El segundo nombre solo debe contener letras.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+                <label for="apellido1">Primer apellido:</label>
+                <input
+                    formControlName="apellido1"
+                    [(ngModel)]="paciente.apellido1"
+                    id="apellido1"
+                    type="text"
+                    class="form-control">
+                <div *ngIf="f.apellido1.touched && f.apellido1.invalid" class="alert alert-danger">
+                    <div *ngIf="f.apellido1.errors.required">*El primer apellido es requerido.</div>
+                    <div *ngIf="f.apellido1.errors.pattern">*El primer apellido solo debe contener letras.</div>
+                </div>
+            </div>
+
+            <div class="col-md-6 ">
+                <label for="apellido2">Segundo apellido:</label>
+                <input
+                    formControlName="apellido2"
+                    [(ngModel)]="paciente.apellido2"
+                    id="apellido2"
+                    type="text"
+                    class="form-control">
+                <div *ngIf="f.apellido2.touched && f.apellido2.invalid" class="alert alert-danger">
+                    <div *ngIf="f.apellido2.errors.required">*El segundo apellido es requerido.</div>
+                    <div *ngIf="f.apellido2.errors.pattern">*El segundo apellido solo debe contener letras.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+                <label for="departamento_id">Departamento:</label>
+                <select id="departamento_id" name="departamento_id" formControlName="departamento_id" class="form-control" (change)="listMunicipio($event.target.value)" [(ngModel)]="paciente.departamento_id" >
+                    <option *ngFor="let departamento of departamentos" [value]="departamento.id" > 
+                        {{ departamento.nombre }}
+                    </option>
+                </select>
+                <div *ngIf="f.departamento_id.touched && f.departamento_id.invalid" class="alert alert-danger">
+                    <div *ngIf="f.departamento_id.errors.required">*El departamento es requerido.</div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="municipio_id">Municipio:</label>
+                <select id="municipio_id" name="municipio_id" formControlName="municipio_id" class="form-control" [(ngModel)]="paciente.municipio_id" >
+                    <option *ngFor="let municipio of municipios" [value]="municipio.id" > 
+                        {{ municipio.nombre }}
+                    </option>
+                </select>
+                <div *ngIf="f.municipio_id.touched && f.municipio_id.invalid" class="alert alert-danger">
+                    <div *ngIf="f.municipio_id.errors.required">*El municipio es requerido.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 ">
+                <label for="genero_id">Genero:</label>
+                <select id="genero_id" name="genero_id" formControlName="genero_id" class="form-control" [(ngModel)]="paciente.genero_id">
+                    <option *ngFor="let genero of listGenero" [value]="genero.id" > 
+                        {{ genero.descripcion }}
+                    </option>
+                </select>
+                <div *ngIf="f.genero_id.touched && f.genero_id.invalid" class="alert alert-danger">
+                    <div *ngIf="f.genero_id.errors.required">*El género es requerido.</div>
+                </div>
+            </div>
+        </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid" >Actualizar paciente</button>
+</form>
+</div>
+
