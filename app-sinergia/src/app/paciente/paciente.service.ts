@@ -14,9 +14,9 @@ export class PacienteService {
   private apiURL = "http://127.0.0.1:8000/api/paciente/";
 
   httpOptions = {
-     headers: new HttpHeaders({
-       'Content-Type': 'application/json'
-     })
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
   }
 
   constructor(private httpClient: HttpClient) { }

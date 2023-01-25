@@ -49,6 +49,7 @@ export class EditComponent implements OnInit {
     this.id = this.route.snapshot.params['idPaciente'];
     this.pacienteService.find(this.id).subscribe((data: Paciente)=>{
       this.paciente = data;
+      this.listMunicipio(data.departamento_id);
       console.log("Aqui data", data)
     });
 
