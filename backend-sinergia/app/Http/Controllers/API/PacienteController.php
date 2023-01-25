@@ -44,7 +44,7 @@ class PacienteController extends Controller
       return response()->json($data, 200);
     }
 
-    public function update(Request $request,$id){
+    public function update(Request $request, $id){
         $data['tipo_documento_id'] = $request['tipo_documento_id'];
         $data['numero_documento'] = $request['numero_documento'];
         $data['nombre1'] = $request['nombre1'];
